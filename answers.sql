@@ -1,17 +1,15 @@
-DELIMITER //
-
-CREATE OR REPLACE FUNCTION COUNT_STUDENTS(DepartmentID INT)
-RETURNS INT
-DETERMINISTIC
+CREATE OR REPLACE FUNCTION COUNT_STUDENTS (
+    DepartmentID IN NUMBER
+)
+RETURN NUMBER
+IS
+    v_count NUMBER;
 BEGIN
-    DECLARE student_count INT;
-
     SELECT COUNT(*)
-    INTO student_count
+    INTO v_count
     FROM Student
-    WHERE Student.DepartmentID = DepartmentID;
+    WHERE Student.DepartmentID = COUNT_STUDENTS.DepartmentID;
 
-    RETURN student_count;
-END //
-
-DELIMITER ;
+    RETURN v_count;
+END;
+/
