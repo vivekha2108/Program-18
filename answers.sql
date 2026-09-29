@@ -1,15 +1,15 @@
-CREATE OR REPLACE FUNCTION COUNT_STUDENTS (
-    DepartmentID IN NUMBER
+CREATE OR REPLACE FUNCTION COUNT_STUDENTS(
+    DepartmentID IN INT
 )
-RETURN NUMBER
+RETURN INT
 IS
-    v_count NUMBER;
+    student_count INT;
 BEGIN
     SELECT COUNT(*)
-    INTO v_count
+    INTO student_count
     FROM Student
-    WHERE Student.DepartmentID = COUNT_STUDENTS.DepartmentID;
+    WHERE Student.DepartmentID = DepartmentID;
 
-    RETURN v_count;
+    RETURN student_count;
 END;
 /
